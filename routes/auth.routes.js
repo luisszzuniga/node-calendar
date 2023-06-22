@@ -38,6 +38,47 @@ const router = express.Router();
  *       description: Bad request
  */
 
+
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     summary: Login user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             example:
+ *               username: johndoe
+ *               password: password123
+ *     responses:
+ *       '201':
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *               example:
+ *                 username: johndoe
+ *                 email: john_doe@example.com
+ *                 password: password123
+ */
 router.post('/login', (req, res) => {
     login(req, res);
 });
@@ -62,10 +103,13 @@ router.post('/login', (req, res) => {
  *                 type: string
  *               password:
  *                 type: string
+ *               confirm_password:
+ *                 type: string
  *             example:
- *               username: john_doe
+ *               username: johndoe
  *               email: john_doe@example.com
  *               password: password123
+ *               confirm_password: password123
  *     responses:
  *       '201':
  *         description: Created
@@ -81,7 +125,7 @@ router.post('/login', (req, res) => {
  *                 password:
  *                   type: string
  *               example:
- *                 username: john_doe
+ *                 username: johndoe
  *                 email: john_doe@example.com
  *                 password: password123
  */

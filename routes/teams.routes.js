@@ -12,7 +12,7 @@ const { verifyToken } = require('../middlewares/auth.middleware');
 
 /**
  * @swagger
- * /teams/all:
+ * /api/teams/all:
  *   get:
  *     summary: Retrieve a list of all teams
  *     tags: [Teams]
@@ -26,7 +26,7 @@ const { verifyToken } = require('../middlewares/auth.middleware');
  *               items:
  *                 $ref: '#/components/schemas/Team'
  */
-router.get('/all-user-teams', verifyToken, all);
+router.get('/all', verifyToken, all);
 
 /**
  * @swagger
