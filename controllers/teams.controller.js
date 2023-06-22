@@ -47,9 +47,9 @@ exports.update = async (req, res) => {
     }
 
     const team = await Team.findById(req.params.id).populate("creatorUser");
-    if (team.creatorUser.username != req.user.username) {
-        return res.status(401).json({ error: "Unauthorized" })
-    }
+    // if (team.creatorUser.username != req.user.username) {
+    //     return res.status(401).json({ error: "Unauthorized" })
+    // }
     
     team.name = value.name;
     team.description = value.description;
@@ -65,9 +65,9 @@ exports.update = async (req, res) => {
 
 exports.destroy = async (req, res) => {
     const team = await Team.findById(req.params.id).populate("creatorUser");
-    if (team.creatorUser.username != req.user.username) {
-        return res.status(401).json({ error: "Unauthorized" })
-    }
+    // if (team.creatorUser.username != req.user.username) {
+    //     return res.status(401).json({ error: "Unauthorized" })
+    // }
     team.deleteOne();
 
     res.status(200).json({ "message": "success" });

@@ -26,7 +26,7 @@ const { verifyToken } = require('../middlewares/auth.middleware');
  *               items:
  *                 $ref: '#/components/schemas/Team'
  */
-router.get('/all', verifyToken, all);
+router.get('/all', all);
 
 /**
  * @swagger
@@ -49,7 +49,7 @@ router.get('/all', verifyToken, all);
  *             schema:
  *               $ref: '#/components/schemas/Team'
  */
-// router.get('/get/:id', verifyToken, get);
+router.get('/get/:id', get);
 
 /**
  * @swagger
@@ -63,7 +63,18 @@ router.get('/all', verifyToken, all);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/TeamInput'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               creatorUser:
+ *                 type: string
+ *             example:
+ *               name: Team1
+ *               description: Team description
+ *               creatorUser: 6447d86ab30666e7f8c0e2f7
  *     responses:
  *       201:
  *         description: The created team object.
@@ -72,7 +83,7 @@ router.get('/all', verifyToken, all);
  *             schema:
  *               $ref: '#/components/schemas/Team'
  */
-router.post('/store', verifyToken, store);
+router.post('/store', store);
 
 /**
  * @swagger
@@ -93,16 +104,35 @@ router.post('/store', verifyToken, store);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/TeamInput'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *             example:
+ *               name: Team2
+ *               description: Team description
  *     responses:
  *       200:
  *         description: The updated team object.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Team'
+    *             type: object
+    *             properties:
+    *               name:
+    *                 type: string
+    *               description:
+    *                 type: string
+    *               creatorUser:
+    *                 type: string
+    *             example:
+    *               name: Team1
+    *               description: Team description
+    *               creatorUser: 6447d86ab30666e7f8c0e2f7
  */
-router.put('/update/:id', verifyToken, update);
+router.put('/update/:id', update);
 
 /**
  * @swagger
@@ -128,6 +158,6 @@ router.put('/update/:id', verifyToken, update);
  *                 message:
  *                   type: string
  */
-router.delete('/delete/:id', verifyToken, destroy);
+router.delete('/delete/:id', destroy);
 
 module.exports = router;
